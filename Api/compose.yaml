@@ -1,0 +1,22 @@
+name: DotNetDockerDebugging
+services:
+    vscodeapi1:
+        ports:
+            - 5000:5002
+        environment:
+            - ASPNETCORE_URLS=http://+:5002
+        volumes:
+            - ./.netCOREWebApi/vscodeApi/appsettings.Docker.json:/app/appsettings.json
+        image: vscodeapi1
+
+    cleanarchitectureapi_1:
+        ports:
+            - 32781:51112
+        environment:
+            - ASPNETCORE_URLS=https://+:51112
+            - ASPNETCORE_HTTPS_PORT=51112
+            - ASPNETCORE_Kestrel__Certificates__Default__Password=myCrtPW2025.
+            - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+        volumes:
+            - ${USERPROFILE}\.dotnet\https:/https
+        image: cleanarchitectureapi_1

@@ -1,0 +1,12 @@
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\bin\Debug\net7\Clients.deps.json
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\bin\Debug\net7\Clients.dll
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\bin\Debug\net7\Clients.pdb
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\obj\Debug\net7\Clients.csproj.AssemblyReference.cache
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\obj\Debug\net7\Clients.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\obj\Debug\net7\Clients.AssemblyInfoInputs.cache
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\obj\Debug\net7\Clients.AssemblyInfo.cs
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\obj\Debug\net7\Clients.csproj.CoreCompileInputs.cache
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\obj\Debug\net7\Clients.dll
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\obj\Debug\net7\refint\Clients.dll
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\obj\Debug\net7\Clients.pdb
+C:\Users\gianl\Desktop\Gianluca\Local_Repos\Clients\obj\Debug\net7\ref\Clients.dll

@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+         {
+            "name": ".NET Core Docker Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickRemoteProcess}",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            },
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [ "exec", "-i", "dotnetdockerdebugging-cleanarchitectureapi_1-1" ],
+                "debuggerPath": "/publish/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}",
+                "quoteArgs": false
+            }
+        }
+    ]
+}

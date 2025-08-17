@@ -1,0 +1,75 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+         {
+            "name": ".NET Core Docker Attach CleanArchitecture",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickRemoteProcess}",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            },
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [ "exec", "-i", "dotnetdockerdebugging-cleanarchitectureapi_1-1" ],
+                "debuggerPath": "/publish/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}",
+                "quoteArgs": false
+            }
+        },
+        {
+            "name": ".NET Core Docker Attach VsCodeApi",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickRemoteProcess}",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}/"
+            },
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [
+                    "exec",
+                    "-i",
+                    "dotnetdockerdebugging-vscodeapi1-1"
+                ],
+                "debuggerPath": "/publish/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}",
+                "quoteArgs": false
+            }
+        },
+        {
+            "name": ".NET Core Launch vscodeApi",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceRoot}/.netCOREWebApi/vscodeApi/bin/Debug/net7/vscodeApi.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "externalConsole": false,
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:5001/"
+            },
+        },
+        {
+            "name": ".NET Core Launch Clean Architecture Basic",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceRoot}/CleanArchitecture-Basic/CleanArchitecture.API/bin/Debug/net7.0/CleanArchitecture.API.dll",
+            "args": [],
+            //Setto cwd sull'attuale folder (partendo da Api) in cui viene messo il risultato del compilato
+            "cwd": "${workspaceRoot}/CleanArchitecture-Basic/CleanArchitecture.API/bin/Debug/net7.0",
+            "externalConsole": false,
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://localhost:32782/"
+            },
+        }
+    ]
+}

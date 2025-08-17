@@ -1,0 +1,40 @@
+# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+# This stage is used when running from VS in fast mode (Default for Debug configuration)
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 5111
+EXPOSE 5112
+
+ENV ASPNETCORE_URLS=http://+:5111
+ENV ASPNETCORE_URLS=https://+:5112
+
+
+
+# This stage is used to build the service project
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+ARG BUILD_CONFIGURATION=Debug
+WORKDIR /src
+COPY ["CleanArchitecture-Basic/CleanArchitecture.API/CleanArchitecture.API.csproj", "CleanArchitecture-Basic/CleanArchitecture.API/"]
+COPY ["CleanArchitecture-Basic/CleanArchitecture.Application/CleanArchitecture.Application.csproj", "CleanArchitecture-Basic/CleanArchitecture.Application/"]
+COPY ["CleanArchitecture-Basic/CleanArchitecture.Domain/CleanArchitecture.Domain.csproj", "CleanArchitecture-Basic/CleanArchitecture.Domain/"]
+COPY ["CleanArchitecture-Basic/CleanArchitecture.Infrastructure/CleanArchitecture.Infrastructure.csproj", "CleanArchitecture-Basic/CleanArchitecture.Infrastructure/"]
+RUN dotnet restore "./CleanArchitecture-Basic/CleanArchitecture.API/CleanArchitecture.API.csproj"
+COPY . .
+WORKDIR "/src/CleanArchitecture-Basic/CleanArchitecture.API"
+RUN dotnet build "./CleanArchitecture.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# This stage is used to publish the service project to be copied to the final stage
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Debug
+RUN dotnet publish "./CleanArchitecture.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish ./
+RUN apt-get update 
+RUN apt-get install -y --no-install-recommends apt-utils 
+RUN apt-get install -y curl unzip procps
+RUN curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /publish/vsdbg;
+ENTRYPOINT ["dotnet", "CleanArchitecture.API.dll"]

@@ -1,0 +1,30 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+
+
+RUN mkdir /src/
+WORKDIR /src/
+
+COPY ./vscodeApi.csproj /src/vscodeApi.csproj
+COPY ../../Clients/Clients.csproj /src/Clients.csproj
+RUN dotnet restore
+
+COPY ./ /src/
+COPY ../../Clients/ /src
+RUN mkdir /out/
+
+RUN dotnet build vscodeApi.csproj --configuration Debug 
+RUN dotnet publish vscodeApi.csproj --output /out --configuration Debug
+
+ENTRYPOINT ["dotnet", "run"]
+
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 as runtime
+
+WORKDIR /app
+COPY --from=build /out/ /app
+#install debugger for NET Core
+RUN apt-get update 
+RUN apt-get install -y --no-install-recommends apt-utils 
+RUN apt-get install -y curl unzip procps
+RUN curl -sSL https://aka.ms/getvsdbgsh | bash /dev/stdin -v latest -l /publish/vsdbg;
+
+ENTRYPOINT ["dotnet", "vscodeApi.dll"]
