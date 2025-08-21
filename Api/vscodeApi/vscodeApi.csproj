@@ -10,6 +10,6 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.13.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Clients\Clients.csproj" />
+    <ProjectReference Include="..\Clients\Clients.csproj" />
   </ItemGroup>
 </Project>
