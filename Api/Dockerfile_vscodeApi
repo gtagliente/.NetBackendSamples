@@ -13,11 +13,11 @@ RUN dotnet build "Clients/Clients.csproj" --configuration Debug
 RUN dotnet publish "Clients/Clients.csproj" --output /out --configuration Debug
 
 
-COPY ./.netCOREWebApi/vscodeApi/vscodeApi.csproj /src/.netCOREWebApi/vscodeApi/vscodeApi.csproj
-RUN dotnet restore "/src/.netCOREWebApi/vscodeApi/vscodeApi.csproj"
-COPY ./.netCOREWebApi/vscodeApi/ /src/.netCOREWebApi/vscodeApi
-RUN dotnet build "/src/.netCOREWebApi/vscodeApi/vscodeApi.csproj" --configuration Debug
-RUN dotnet publish "/src/.netCOREWebApi/vscodeApi/vscodeApi.csproj" --output /out --configuration Debug
+COPY ./vscodeApi/vscodeApi.csproj /src/vscodeApi/vscodeApi.csproj
+RUN dotnet restore "/src/vscodeApi/vscodeApi.csproj"
+COPY ./vscodeApi/ /src/vscodeApi
+RUN dotnet build "/src/vscodeApi/vscodeApi.csproj" --configuration Debug
+RUN dotnet publish "/src/vscodeApi/vscodeApi.csproj" --output /out --configuration Debug
 
 ENTRYPOINT ["dotnet", "run"]
 

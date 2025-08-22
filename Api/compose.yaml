@@ -6,7 +6,7 @@ services:
         environment:
             - ASPNETCORE_URLS=http://+:5002
         volumes:
-            - ./.netCOREWebApi/vscodeApi/appsettings.Docker.json:/app/appsettings.json
+            - ./vscodeApi/appsettings.Docker.json:/app/appsettings.json
         image: vscodeapi1
 
     cleanarchitectureapi_1:

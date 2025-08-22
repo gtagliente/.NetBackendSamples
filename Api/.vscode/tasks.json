@@ -43,7 +43,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/.netCOREWebApi.sln",
+                "${workspaceFolder}/vscodeApi.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -55,7 +55,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/.netCOREWebApi.sln",
+                "${workspaceFolder}/vscodeApi.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -69,7 +69,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/.netCOREWebApi.sln"
+                "${workspaceFolder}/vscodeApi.sln"
             ],
             "problemMatcher": "$msCompile"
         }

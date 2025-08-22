@@ -43,7 +43,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}/.netCOREWebApi/vscodeApi/bin/Debug/net7/vscodeApi.dll",
+            "program": "${workspaceRoot}/vscodeApi/bin/Debug/net7/vscodeApi.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
             "externalConsole": false,
