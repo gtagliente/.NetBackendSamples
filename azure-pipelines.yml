@@ -1,0 +1,63 @@
+# .NET 7 CI pipeline for multiple solutions in Api folder on Linux
+trigger:
+- development
+
+pool:
+  vmImage: 'ubuntu-22.04'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+# 1️⃣ Install .NET 7 SDK
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '7.0.x'
+
+# 2️⃣ Clear NuGet caches
+- script: dotnet nuget locals all --clear
+  displayName: 'Clear NuGet caches'
+
+# 3️⃣ Clean bin/obj folders
+- script: |
+    rm -rf Api/**/bin
+    rm -rf Api/**/obj
+  displayName: 'Clean bin/obj folders'
+
+# ===============================
+# 4️⃣ Build CleanArchitecture.API.sln
+# ===============================
+- script: dotnet restore Api/CleanArchitecture.API.sln --verbosity detailed
+  displayName: 'Restore NuGet packages (CleanArchitecture.API)'
+
+- script: dotnet build Api/CleanArchitecture.API.sln --configuration $(buildConfiguration) --no-restore
+  displayName: 'Build CleanArchitecture.API.sln'
+
+# - script: dotnet test Api/CleanArchitecture.API.sln --configuration $(buildConfiguration) --no-build --verbosity normal
+#   displayName: 'Run tests CleanArchitecture.API.sln'
+
+# ===============================
+# 5️⃣ Build Clients.sln
+# ===============================
+- script: dotnet restore Api/Clients.sln --verbosity detailed
+  displayName: 'Restore NuGet packages (Clients)'
+
+- script: dotnet build Api/Clients.sln --configuration $(buildConfiguration) --no-restore
+  displayName: 'Build Clients.sln'
+
+# - script: dotnet test Api/Clients.sln --configuration $(buildConfiguration) --no-build --verbosity normal
+#   displayName: 'Run tests Clients.sln'
+
+# ===============================
+# 6️⃣ Build vscodeApi.sln
+# ===============================
+- script: dotnet restore Api/vscodeApi.sln --verbosity detailed
+  displayName: 'Restore NuGet packages (vscodeApi)'
+
+- script: dotnet build Api/vscodeApi.sln --configuration $(buildConfiguration) --no-restore
+  displayName: 'Build vscodeApi.sln'
+
+# - script: dotnet test Api/vscodeApi.sln --configuration $(buildConfiguration) --no-build --verbosity normal
+#   displayName: 'Run tests vscodeApi.sln'
+
