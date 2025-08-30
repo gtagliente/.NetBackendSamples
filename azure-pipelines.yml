@@ -64,21 +64,6 @@ steps:
 #   displayName: 'Run tests vscodeApi.sln'
 
 # -------------------------
-# Docker: Login
-# -------------------------
-- task: Docker@2
-  displayName: 'Login to GHCR'
-  inputs:
-    command: login
-    containerRegistry: 'GitHubCR'   # <-- your service connection name
-
-- script: |
-    echo "✅ Logged in to GHCR successfully"
-    docker info
-    docker pull ghcr.io/stefanprodan/podinfo:latest || echo "Test pull failed, but login worked"
-  displayName: 'Test GHCR connection'
-
-# -------------------------
 # Docker: Build & Push CleanArchitecture.API
 # -------------------------
 - task: Docker@2
