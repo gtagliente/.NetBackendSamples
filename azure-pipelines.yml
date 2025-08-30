@@ -70,7 +70,7 @@ steps:
     containerRegistry: 'GitHubCR'   # <-- Service connection name
     repository: '$(Build.Repository.Name)/clean-architecture-api'
     command: 'buildAndPush'
-    Dockerfile: 'Api/CleanArchitecture.API/Dockerfile_CleanArchitecture'
+    Dockerfile: 'Api/Dockerfile_CleanArchitecture'
     tags: |
       pr-$(System.PullRequest.PullRequestId)
       latest
@@ -84,7 +84,7 @@ steps:
     containerRegistry: 'GitHubCR'   # <-- Service connection name
     repository: '$(Build.Repository.Name)/vscode-api'
     command: 'buildAndPush'
-    Dockerfile: 'Api/vscodeApi/Dockerfile_vscodeApi'
+    Dockerfile: 'Api/Dockerfile_vscodeApi'
     tags: |
       pr-$(System.PullRequest.PullRequestId)
       latest
