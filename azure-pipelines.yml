@@ -7,6 +7,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  githubUser: 'gtagliente'
+
 
 steps:
 # 1️⃣ Install .NET 7 SDK
@@ -68,7 +70,7 @@ steps:
   displayName: 'Build and Push CleanArchitecture.API Image'
   inputs:
     containerRegistry: 'GitHubCR'   # <-- Service connection name
-    repository: '$(GitHub.User)/clean-architecture-api'
+    repository: '$(githubUser)/clean-architecture-api'
     command: 'buildAndPush'
     Dockerfile: 'Api/Dockerfile_CleanArchitecture'
     tags: |
@@ -82,7 +84,7 @@ steps:
   displayName: 'Build and Push vscodeApi Image'
   inputs:
     containerRegistry: 'GitHubCR'   # <-- Service connection name
-    repository: '$(GitHub.User)/vscode-api'
+    repository: '$(githubUser)/vscode-api'
     command: 'buildAndPush'
     Dockerfile: 'Api/Dockerfile_vscodeApi'
     tags: |
