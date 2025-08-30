@@ -68,7 +68,7 @@ steps:
   displayName: 'Build and Push CleanArchitecture.API Image'
   inputs:
     containerRegistry: 'GitHubCR'   # <-- Service connection name
-    repository: '$(Build.Repository.Name)/clean-architecture-api'
+    repository: '$(GitHub.User)/clean-architecture-api'
     command: 'buildAndPush'
     Dockerfile: 'Api/Dockerfile_CleanArchitecture'
     tags: |
@@ -82,7 +82,7 @@ steps:
   displayName: 'Build and Push vscodeApi Image'
   inputs:
     containerRegistry: 'GitHubCR'   # <-- Service connection name
-    repository: '$(Build.Repository.Name)/vscode-api'
+    repository: '$(GitHub.User)/vscode-api'
     command: 'buildAndPush'
     Dockerfile: 'Api/Dockerfile_vscodeApi'
     tags: |
