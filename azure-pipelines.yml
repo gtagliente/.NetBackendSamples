@@ -61,3 +61,31 @@ steps:
 # - script: dotnet test Api/vscodeApi.sln --configuration $(buildConfiguration) --no-build --verbosity normal
 #   displayName: 'Run tests vscodeApi.sln'
 
+# -------------------------
+# Docker: Build & Push CleanArchitecture.API
+# -------------------------
+- task: Docker@2
+  displayName: 'Build and Push CleanArchitecture.API Image'
+  inputs:
+    containerRegistry: 'GitHubCR'   # <-- Service connection name
+    repository: '$(Build.Repository.Name)/clean-architecture-api'
+    command: 'buildAndPush'
+    Dockerfile: 'Api/CleanArchitecture.API/Dockerfile_CleanArchitecture'
+    tags: |
+      pr-$(System.PullRequest.PullRequestId)
+      latest
+
+# -------------------------
+# Docker: Build & Push vscodeApi
+# -------------------------
+- task: Docker@2
+  displayName: 'Build and Push vscodeApi Image'
+  inputs:
+    containerRegistry: 'GitHubCR'   # <-- Service connection name
+    repository: '$(Build.Repository.Name)/vscode-api'
+    command: 'buildAndPush'
+    Dockerfile: 'Api/vscodeApi/Dockerfile_vscodeApi'
+    tags: |
+      pr-$(System.PullRequest.PullRequestId)
+      latest
+
