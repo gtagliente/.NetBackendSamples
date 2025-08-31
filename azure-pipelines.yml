@@ -73,9 +73,7 @@ steps:
     repository: '$(githubUser)/clean-architecture-api'
     command: 'buildAndPush'
     Dockerfile: 'Api/Dockerfile_CleanArchitecture'
-    tags: |
-      pr-$(System.PullRequest.PullRequestId)
-      latest
+    tags: latest
 
 # -------------------------
 # Docker: Build & Push vscodeApi
@@ -87,7 +85,5 @@ steps:
     repository: '$(githubUser)/vscode-api'
     command: 'buildAndPush'
     Dockerfile: 'Api/Dockerfile_vscodeApi'
-    tags: |
-      pr-$(System.PullRequest.PullRequestId)
-      latest
+    tags: latest
 
