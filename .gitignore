@@ -1,4 +1,4 @@
 obj/
 bin/
 .vs/
-PAT_Token.txt
+*.nogit.*
