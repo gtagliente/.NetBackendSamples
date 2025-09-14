@@ -2,6 +2,7 @@
 echo ------------------------
 echo Applying Secrets
 echo ------------------------
+kubectl apply -f aspnet-cert-password-secret.yaml
 kubectl apply -f aspnet-cert-secret.yaml
 kubectl apply -f ghcr-secret.yaml
 

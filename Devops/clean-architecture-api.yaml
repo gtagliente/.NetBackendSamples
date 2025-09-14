@@ -26,7 +26,10 @@ spec:
         - name: ASPNETCORE_Kestrel__Certificates__Default__Path
           value: "/https/aspnetapp.pfx"
         - name: ASPNETCORE_Kestrel__Certificates__Default__Password
-          value: "myCrtPW2025."
+          valueFrom:
+            secretKeyRef:
+              name: aspnet-cert-password
+              key: cert-password
         volumeMounts:
         - name: aspnet-cert
           mountPath: /https
