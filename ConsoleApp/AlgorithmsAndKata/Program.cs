@@ -1,5 +1,6 @@
-﻿// using FluentCalculator;
-// See https://aka.ms/new-console-template for more information
+﻿// See https://aka.ms/new-console-template for more information
+using System;
+
 Console.WriteLine("Hello, World!");
 
-var result = Fluent.FluentCalculator.ExecFluent();
+var res = BWT_Worker.Decode("nnbbraaaa", 4);
