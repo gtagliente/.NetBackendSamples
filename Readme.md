@@ -36,6 +36,10 @@ oppure
 minikube addons enable ingress
 kubectl delete service clean-architecture-api-service
 
+minikube start -p multi-node-k8s --nodes=3 --driver=docker --container-runtime=containerd extra-config=kubeadm.node-name=minikube wait=all
 
+kubectl get nodes -l role=worker
+
+kubectl label nodes multi-node-k8s-m03 role=worker
 Poweshell
 [Convert]::ToBase64String((Get-Content -Path "C:\Users\gianl\.dotnet\https\aspnetapp.pfx" -Encoding Byte)) > aspnetapp.b64
